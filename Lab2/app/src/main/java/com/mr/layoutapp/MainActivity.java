@@ -1,5 +1,6 @@
 package com.mr.layoutapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        setButtonsClickListener();
     }
 
     @Override
@@ -52,4 +57,41 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void myClickHandler(View view){
+        TextView txtV = (TextView) findViewById(R.id.text_view);
+        switch (view.getId()) {
+            case R.id.button:
+                txtV.setTextColor(Color.RED);
+                break;
+            case R.id.button2:
+                txtV.setTextColor(Color.GREEN);
+                break;
+            case R.id.button3:
+                txtV.setTextColor(Color.BLUE);
+                break;
+            default:
+        }
+    }
+
+    public void setButtonsClickListener(){
+        Button buttonRed = (Button) findViewById(R.id.button);
+        Button buttonGreen = (Button) findViewById(R.id.button2);
+        Button buttonBlue = (Button) findViewById(R.id.button3);
+
+        final View.OnClickListener myClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myClickHandler(view);
+            }
+        };
+
+        buttonRed.setOnClickListener(myClickListener);
+        buttonGreen.setOnClickListener(myClickListener);
+        buttonBlue.setOnClickListener(myClickListener);
+    }
+
 }
+
+
+
