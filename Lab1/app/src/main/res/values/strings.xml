@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">bpTutorial2019</string>
+    <string name="action_settings">Settings</string>
+    <string name="myName">Setting2</string>
+    <string name="fab_msg">Replace with your own action</string>
+    <string name="button">Button</string>
+</resources>
