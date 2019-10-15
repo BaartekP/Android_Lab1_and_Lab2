@@ -1,6 +1,7 @@
 package com.mr.layoutapp;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,11 +9,15 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setButtonsClickListener();
+        setSpinnerItemSelectedListener();
     }
 
     @Override
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void myClickHandler(View view){
+    public void myClickHandler(View view) {
         TextView txtV = (TextView) findViewById(R.id.text_view);
         switch (view.getId()) {
             case R.id.button:
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setButtonsClickListener(){
+    public void setButtonsClickListener() {
         Button buttonRed = (Button) findViewById(R.id.button);
         Button buttonGreen = (Button) findViewById(R.id.button2);
         Button buttonBlue = (Button) findViewById(R.id.button3);
@@ -85,10 +91,48 @@ public class MainActivity extends AppCompatActivity {
                 myClickHandler(view);
             }
         };
+        if (buttonRed != null)
+            buttonRed.setOnClickListener(myClickListener);
+        if (buttonGreen != null)
+            buttonGreen.setOnClickListener(myClickListener);
+        if (buttonBlue != null)
+            buttonBlue.setOnClickListener(myClickListener);
+    }
 
-        buttonRed.setOnClickListener(myClickListener);
-        buttonGreen.setOnClickListener(myClickListener);
-        buttonBlue.setOnClickListener(myClickListener);
+    public void setSpinnerItemSelectedListener() {
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_v);
+        if (spinner != null) {
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    ImageView logoView = (ImageView) findViewById(R.id.image_v);
+                    if (logoView != null) {
+                        Drawable drawable;
+
+                        switch (i) {
+                            case 0:
+                                drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.pp_logo, null);
+                                break;
+                            case 1:
+                                drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.et_logo, null);
+                                break;
+                            case 2:
+                                drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.kr_logo, null);
+                                break;
+                            default:
+                                drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.et_logo, null);
+                        }
+                        logoView.setImageDrawable(drawable);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+        }
     }
 
 }
