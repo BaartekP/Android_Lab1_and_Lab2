@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">intens_media_player</string>
+    <string name="placeholder">Selected sound : </string>
+    <string name="Sounds">Sounds</string>
+    <string name="Sound1">Sound1</string>
+    <string name="Sound2">Sound2</string>
+    <string name="Sound3">Sound3</string>
+    <string name="Sound4">Sound4</string>
+    <string name="set_sound">set_sound</string>
+    <string name="back_message">RESULT_OK</string>
+</resources>
