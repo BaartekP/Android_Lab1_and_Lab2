@@ -4,16 +4,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String SOUND_ID = "sound_id";
     public static final int BUTTON_REQUEST = 1;
     private int current_sound = 0;
+
+    private MediaPlayer backgroundPlayer;
+    private MediaPlayer buttonPlayer;
+    static public Uri[] sounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,44 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        sounds = new Uri[4];
+        sounds[0] = Uri.parse("android.resource://" + getPackageName() + "/" +
+                R.raw.ringd);
+        sounds[1] = Uri.parse("android.resource://" + getPackageName() + "/" +
+                R.raw.ring01);
+        sounds[2] = Uri.parse("android.resource://" + getPackageName() + "/" +
+                R.raw.ring02);
+        sounds[3] = Uri.parse("android.resource://" + getPackageName() + "/" +
+                R.raw.ring03);
+
+        buttonPlayer = new MediaPlayer();
+        buttonPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        buttonPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                backgroundPlayer.pause();
+                mediaPlayer.start();
+            }
+        });
+
+        buttonPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                backgroundPlayer.start();
+            }
+        });
+
+        buttonPlayer.reset();
+        try {
+            buttonPlayer.setDataSource(getApplicationContext(),sounds[current_sound]);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        buttonPlayer.prepareAsync();
+
     }
 
     @Override
@@ -58,4 +105,34 @@ public class MainActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        backgroundPlayer.pause();
+        buttonPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        backgroundPlayer = MediaPlayer.create(this, R.raw.mario);
+        backgroundPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+                mediaPlayer.start();
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        backgroundPlayer.release();
+    }
+
+
 }
