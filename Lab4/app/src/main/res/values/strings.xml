@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FragmentApp</string>
+    <string name="task_description">Task desc</string>
+    <string name="task_title">Task title</string>
+    <string name="add_task">Add task</string>
+    <string name="default_title">default title</string>
+    <string name="default_description">default desc</string>
+
+    <string-array name="images">
+        <item>drawable 1</item>
+        <item>drawable 2</item>
+        <item>drawable 3</item>
+    </string-array>
+
+</resources>
