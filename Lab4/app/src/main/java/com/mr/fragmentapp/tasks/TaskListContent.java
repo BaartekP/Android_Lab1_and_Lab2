@@ -53,6 +53,12 @@ public class TaskListContent {
         return builder.toString();
     }
 
+    public static void removeItem(int position) {
+        String i = ITEMS.get(position).id;
+        ITEMS.remove(position);
+        ITEM_MAP.remove(i);
+    }
+
     /**
      * A dummy item representing a piece of content.
      */
@@ -113,4 +119,5 @@ public class TaskListContent {
             parcel.writeString(picPath);
         }
     }
+
 }
