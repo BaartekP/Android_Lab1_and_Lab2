@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -66,14 +67,27 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     @Override
     public void onListFragmentClickInteraction(TaskListContent.Task task, int position) {
-        Toast.makeText(this,getString(R.string.item_selected_msg),Toast.LENGTH_SHORT).show();
-        startSecondActivity(task,position);
+        Toast.makeText(this,getString(R.string.item_selected_msg) + position,Toast.LENGTH_SHORT).show();
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            displayTaskInFragment(task);
+        } else {
+            startSecondActivity(task, position);
+        }
     }
 
     @Override
     public void onListFragmentLongClickInteraction(int position) {
 
     }
+
+    private void displayTaskInFragment(TaskListContent.Task task) {
+     TaskInfoFragment taskInfoFragment =((TaskInfoFragment) getSupportFragmentManager().findFragmentById(R.id.displayFragment));
+        if (taskInfoFragment != null) {
+            taskInfoFragment.displaytask(task);
+        }
+
+    }
+
 }
 
 
