@@ -1,5 +1,8 @@
 package com.mr.fragmentapp.tasks;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +56,7 @@ public class TaskListContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Task {
+    public static class Task implements Parcelable {
         public final String id;
         public final String title;
         public final String details;
@@ -73,9 +76,41 @@ public class TaskListContent {
             this.picPath = picPath;
         }
 
+        protected Task(Parcel in) {
+            id = in.readString();
+            title = in.readString();
+            details = in.readString();
+            picPath = in.readString();
+        }
+
+        public static final Creator<Task> CREATOR = new Creator<Task>() {
+            @Override
+            public Task createFromParcel(Parcel in) {
+                return new Task(in);
+            }
+
+            @Override
+            public Task[] newArray(int size) {
+                return new Task[size];
+            }
+        };
+
         @Override
         public String toString() {
             return title;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(id);
+            parcel.writeString(title);
+            parcel.writeString(details);
+            parcel.writeString(picPath);
         }
     }
 }

@@ -3,11 +3,13 @@ package com.mr.fragmentapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.mr.fragmentapp.tasks.TaskListContent;
 
@@ -19,6 +21,13 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
         setContentView(R.layout.activity_main);
     }
 
+    public static final String taskExtra = "taskExtra";
+
+    private void startSecondActivity(TaskListContent.Task task, int position){
+        Intent intent = new Intent(this,TaskInfoActivity.class);
+        intent.putExtra(taskExtra,task);
+        startActivity(intent);
+    }
 
     public void addClick(View view) {
         EditText taskTitleEditTxt = findViewById(R.id.taskTitle);
@@ -57,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     @Override
     public void onListFragmentClickInteraction(TaskListContent.Task task, int position) {
-
+        Toast.makeText(this,getString(R.string.item_selected_msg),Toast.LENGTH_SHORT).show();
+        startSecondActivity(task,position);
     }
 
     @Override

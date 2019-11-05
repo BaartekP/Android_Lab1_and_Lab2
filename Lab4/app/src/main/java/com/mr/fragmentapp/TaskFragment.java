@@ -25,6 +25,7 @@ public class TaskFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private OnListFragmentInteractionListener mListener;
+
     private MyTaskRecyclerViewAdapter myRecyclerViewAdapter;
 
     /**
@@ -67,7 +68,8 @@ public class TaskFragment extends Fragment {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
             myRecyclerViewAdapter = new MyTaskRecyclerViewAdapter(TaskListContent.ITEMS, mListener);
             recyclerView.setAdapter(myRecyclerViewAdapter);
         }
