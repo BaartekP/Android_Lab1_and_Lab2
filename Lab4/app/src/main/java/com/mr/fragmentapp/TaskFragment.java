@@ -1,8 +1,11 @@
 package com.mr.fragmentapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +30,19 @@ public class TaskFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private MyTaskRecyclerViewAdapter myRecyclerViewAdapter;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(resultCode == Activity.RESULT_OK){
+            if(data != null){
+                boolean changeDAtaSet = data.getBooleanExtra(TaskInfoActivity.DATA_CHANGED_KEY,false);
+                if(changeDAtaSet)
+                    notifyDataChange();
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

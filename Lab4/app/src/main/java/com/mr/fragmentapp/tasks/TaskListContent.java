@@ -66,7 +66,7 @@ public class TaskListContent {
         public final String id;
         public final String title;
         public final String details;
-        public final String picPath;
+        public String picPath;
 
         public Task(String id, String title, String details) {
             this.id = id;
@@ -88,6 +88,17 @@ public class TaskListContent {
             details = in.readString();
             picPath = in.readString();
         }
+
+        public void setPicPath(String path){
+            this.picPath = path;
+        }
+
+        public static void clearList(){
+            ITEMS.clear();
+            ITEM_MAP.clear();
+        }
+
+
 
         public static final Creator<Task> CREATOR = new Creator<Task>() {
             @Override

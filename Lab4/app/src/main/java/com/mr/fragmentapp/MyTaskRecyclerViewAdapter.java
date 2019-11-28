@@ -3,6 +3,7 @@ package com.mr.fragmentapp;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,10 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
                         taskDrawable = context.getResources().getDrawable(R.drawable.circle_drawable_green);
                 }
                 holder.mItemImageView.setImageDrawable(taskDrawable);
+            }else{
+                Bitmap cameraImage = PicUtils.decodePic(task.picPath,60,60);
+                holder.mItemImageView.setImageBitmap(cameraImage);
+
             }
 
         } else {

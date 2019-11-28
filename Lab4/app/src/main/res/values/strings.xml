@@ -23,5 +23,5 @@
     <string name="long_click_msg">byebye</string>
     <string name="delete_cancel_msg">delete_cancel_msg</string>
     <string name="retry_msg">retryMSG</string>
-
+    <string name="myFileprovider">com.mr.fragmentapp.fileprovider</string>
 </resources>
