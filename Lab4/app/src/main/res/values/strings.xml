@@ -14,6 +14,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
     <string name="textview">TextView</string>
     <string name="item_selected_msg">item_selected_msg</string>
     <string name="delete_question">Yo want to delete this?</string>
@@ -23,5 +24,8 @@
     <string name="long_click_msg">byebye</string>
     <string name="delete_cancel_msg">delete_cancel_msg</string>
     <string name="retry_msg">retryMSG</string>
+=======
+    <string name="item_selected_msg">selected str</string>
+>>>>>>> Lab4
 
 </resources>

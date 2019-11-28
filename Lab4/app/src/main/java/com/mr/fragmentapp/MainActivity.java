@@ -5,7 +5,10 @@ import androidx.fragment.app.DialogFragment;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.res.Configuration;
+=======
+>>>>>>> Lab4
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,6 +23,15 @@ public class MainActivity extends AppCompatActivity
         implements
         TaskFragment.OnListFragmentInteractionListener,
         DeleteDialog.OnDeleteDialogInteractionListener {
+
+    public static final String taskExtra = "taskExtra";
+
+    private void startSecondActivity(TaskListContent.Task task,int position){
+        Intent intent = new Intent(this,TaskInfoActivity.class);
+        intent.putExtra(taskExtra,task);
+        startActivity(intent);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +90,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentClickInteraction(TaskListContent.Task task, int position) {
+<<<<<<< HEAD
         Toast.makeText(this,getString(R.string.item_selected_msg) + position,Toast.LENGTH_SHORT).show();
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             displayTaskInFragment(task);
         } else {
             startSecondActivity(task, position);
         }
+=======
+        Toast.makeText(this,getString(R.string.item_selected_msg),Toast.LENGTH_SHORT).show();
+        startSecondActivity(task,position);
+>>>>>>> Lab4
     }
 
     @Override
