@@ -59,6 +59,11 @@ public class TaskListContent {
         ITEM_MAP.remove(i);
     }
 
+    public static void clearList(){
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
+
     /**
      * A dummy item representing a piece of content.
      */

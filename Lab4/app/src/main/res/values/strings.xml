@@ -24,4 +24,7 @@
     <string name="delete_cancel_msg">delete_cancel_msg</string>
     <string name="retry_msg">retryMSG</string>
     <string name="myFileprovider">com.mr.fragmentapp.fileprovider</string>
+    <string name="prefs">prefs</string>
+    <string name="text">text</string>
+    <string name="json">json</string>
 </resources>
