@@ -47,7 +47,7 @@ public class TaskInfoFragment extends Fragment implements View.OnClickListener{
     private File createImageFile() throws IOException{
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = mDisplayTask.title + timeStamp + "_";
+        String imageFileName = "item_" + timeStamp + "_";
         File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,
